@@ -11,12 +11,21 @@
   <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
     <a class="navbar-brand" href="<%= root_path %>">Coder Ticket</a>
     <ul class="nav navbar-nav">
+    <% if !current_user %>
       <li class="nav-item">
-        <a class="nav-link" href="#">Log In</a>
+        <a class="nav-link" href="<%= new_user_session_path %>">Log In</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Sign Up</a>
+        <a class="nav-link" href="<%= new_user_registration_path %>">Sign Up</a>
       </li>
+    <% else %>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= destroy_user_session_path %>">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= new_event_path %>">Create event</a>
+      </li>
+    <% end %> 
     </ul>
   </nav>  
 
