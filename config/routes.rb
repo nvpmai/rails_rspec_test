@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'events#index'
 
   resources :events do
-    resources :tickets
+    resources :tickets do 
+      post 'buy', on: :collection
+    end
   end
+
+  devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', registration: 'register', sign_up: 'cmon_let_me_in' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
